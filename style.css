@@ -1,0 +1,68 @@
+@font-face {
+    font-family: StratosSkyengRegular;
+    src: url(/fonts/statosskyeng-v1.001/Desktop\ fonts/stratosskyeng-regular.otf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #004980;  
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: StratosSkyengRegular;
+}
+
+#level-selection-box {
+    width: 480px;
+    height: 460px;
+    background-color: #C2F5FF;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.level-selection-title {
+    margin-top: 52px;
+    margin-bottom: 48px;
+    font-size: 40px;
+    color: #004980;
+    text-align: center;
+    width: 208px;
+}
+
+.level-list-box {
+    margin-bottom: 67px;
+    width: 342px;
+    height: 98px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.level-box {
+    width: 98px;
+    height: 98px;
+    border-radius: 12px;
+    background-color: #FFFFFF;
+    font-size: 64px;
+    color: #0080C1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.start-game-button {
+    background-color: #7AC100;
+    width: 246px;
+    height: 50px;
+    border: none;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: StratosSkyengRegular;
+    cursor: pointer;
+}
+
