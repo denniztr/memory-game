@@ -1,14 +1,19 @@
-const levelSelectionBox = document.querySelector('#level-selection-box')
+import { gameBoard  } from '/components/game-board-component.js'
+
+export const app = document.querySelector('#app');
 
 function createLevelSelection () {
 
+    const levelSelectionBox = document.createElement('div');
+    levelSelectionBox.classList.add('level-selection-box');
+
     const levelSelectionTitle = document.createElement('h3');
     levelSelectionTitle.textContent = 'Выбери сложность';
-    levelSelectionTitle.classList.add('level-selection-title')
+    levelSelectionTitle.classList.add('level-selection-title');
     levelSelectionBox.append(levelSelectionTitle);
 
     const levelListBox = document.createElement('form');
-    levelListBox.setAttribute('id', 'level-form')
+    levelListBox.setAttribute('id', 'level-form');
     levelSelectionBox.append(levelListBox);
     levelListBox.innerHTML = `  <div class="level-selection-container">
                                     <button type="button" value="1" class="level-button">1</button>
@@ -19,6 +24,8 @@ function createLevelSelection () {
                                     <button type="submit" class="start-game-button">Старт</button>
                                 </div>  `;
 
+    app.append(levelSelectionBox);
+    
     const levelSelectionWarning= document.createElement('p');
     levelSelectionWarning.classList.add('level-selection-warning');
     levelSelectionBox.append(levelSelectionWarning);
@@ -39,11 +46,12 @@ function createLevelSelection () {
         if (selectedLevel) {
             const levelValue = selectedLevel.value;
             console.log(`Начало игры с уровнем ${levelValue}`);
+            gameBoard()
         } else {
             levelSelectionWarning.textContent = 'выберите уровень чтобы начать игру';
             setTimeout(function() {
                 levelSelectionWarning.textContent = '';
-            }, 2000)
+            }, 3000)
         }
     })
 }
