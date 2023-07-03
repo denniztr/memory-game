@@ -14,7 +14,13 @@ body {
     font-family: StratosSkyengRegular;
 }
 
-#level-selection-box {
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.level-selection-box {
     width: 480px;
     height: 460px;
     background-color: #C2F5FF;
@@ -22,6 +28,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto;
+}
+
+#level-form {
+    display: flex;
+    flex-direction: column;
+    gap: 67px;
 }
 
 .level-selection-title {
@@ -33,26 +46,33 @@ body {
     width: 208px;
 }
 
-.level-list-box {
-    margin-bottom: 67px;
-    width: 342px;
-    height: 98px;
+.level-selection-container {
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    gap: 24px;
 }
 
-.level-box {
+.start-the-game-container {
+    align-self: center;
+}
+
+.level-button {
     width: 98px;
     height: 98px;
     border-radius: 12px;
     background-color: #FFFFFF;
     font-size: 64px;
     color: #0080C1;
-    display: flex;
     align-items: center;
     justify-content: center;
+    border: none;
+    font-family: StratosSkyengRegular;
     cursor: pointer;
 }
+
+.level-button.selected {
+    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+  }
 
 .start-game-button {
     background-color: #7AC100;
@@ -66,3 +86,7 @@ body {
     cursor: pointer;
 }
 
+.level-selection-warning {
+    font-size: 10px;
+    color: gray;
+}
