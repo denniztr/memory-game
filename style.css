@@ -15,9 +15,10 @@ body {
 }
 
 #app {
-    width: 100vw;
+    width: 1000px;
     height: 100vh;
     display: flex;
+    flex-direction: column;
 }
 
 .level-selection-box {
@@ -89,4 +90,51 @@ body {
 .level-selection-warning {
     font-size: 10px;
     color: gray;
+}
+
+.game-board-header-container {
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    margin: 22px 22px 0 22px;
+    height: 91px;
+}
+
+.restart-button-container {
+    align-self: center;
+}
+
+#restart-game-button {
+    width: 246px;
+    height: 50px;
+    background-color: #7AC100;
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-family: StratosSkyengRegular;
+    font-size: 24px;
+    align-self: center;
+}
+
+.game-board-timer {
+    width: 155px;
+    font-size: 64px;
+    color: white;
+    font-family: StratosSkyengRegular;
+}
+
+#game-board {
+    width: 100%;
+    margin-left: 22px;
+    margin-right: 22px;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.card-element {
+    width: 95px;
+    height: 133px;
 }
