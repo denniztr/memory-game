@@ -1,6 +1,5 @@
 import { app } from "../app.js";
 
-
 export function gameBoard() {
 
     const createGameBoard = `   <div class="game-board-header-container">
@@ -15,12 +14,13 @@ export function gameBoard() {
     
     const gameBoard = document.querySelector('#game-board')
 
-
     const backOfCardToCopy = ['img/cards/рубашка.svg']
     const backOfCards = Array(36).fill(backOfCardToCopy)
     
     gameBoard.innerHTML = backOfCards.map((backOfCard, index) => {
-        return `<div data-set="${index}" class="card-container"><img src="${backOfCard}"></div>`
+        return `<div data-set="${index}" class="card-container" id="card-div">
+                    <img src="${backOfCard}">
+                </div>`
     }).join('')
 
     const cardsArray = [ 'img/cards/туз бубны.svg', 'img/cards/король бубны.svg', 'img/cards/дама бубны.svg', 'img/cards/валет бубны.svg', 'img/cards/10 бубны.svg', 'img/cards/9 бубны.svg', 'img/cards/8 бубны.svg', 'img/cards/7 бубны.svg', 'img/cards/6 бубны.svg', 
@@ -32,11 +32,12 @@ export function gameBoard() {
     const testButton = document.querySelector('#click-on-me');
     testButton.addEventListener('click', function() {
         gameBoard.innerHTML = cardsArray.map((el, index) => {
-            return `<div data-set="${index}" class="opened-card-container"><img src="${el}"></div>`
+            return `<div data-set="${index}" class="opened-card-container">
+                        <img src="${el}">
+                    </div>`
         }).join('');
     })
 }
-
 
 
 
