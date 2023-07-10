@@ -10,6 +10,7 @@ export function gameBoard() {
                                 <div id="game-board">
                                 </div>  `;
     
+                                
     app.innerHTML = createGameBoard;
     
     const gameBoard = document.querySelector('#game-board')
