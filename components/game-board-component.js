@@ -1,45 +1,64 @@
-import { app } from "../app.js";
+import { app } from '../app.js';
 
-export function gameBoard() {
+export function gameBoardComponent(deck) {
+  let flippedCards = [];
 
-    const createGameBoard = `   <div class="game-board-header-container">
-                                    <div class="game-board-timer">00.00</div>
-                                    <div id="click-on-me">Здесь третья страница приложения (нажми)</div>
-                                    <button id="restart-game-button">Начать заново</button>
-                                </div>
-                                <div id="game-board">
-                                </div>  `;
-    
-                                
-    app.innerHTML = createGameBoard;
-    
-    const gameBoard = document.querySelector('#game-board')
+  const gameBoardRender = () => {
+    const cardsHtml = deck
+      .map((card, index) => {
+        return `<div id='cardWrap' class="card-container">
+            <img data-set="${index}" class="card default" src="${card}">
+            <img data-set="${index}" class="card blank isFlipped" src="img/cards/рубашка.svg">
+            </div>`;
+      })
+      .join('');
 
-    const backOfCardToCopy = ['img/cards/рубашка.svg']
-    const backOfCards = Array(36).fill(backOfCardToCopy)
-    
-    gameBoard.innerHTML = backOfCards.map((backOfCard, index) => {
-        return `<div data-set="${index}" class="card-container" id="card-div">
-                    <img src="${backOfCard}">
-                </div>`
-    }).join('')
+    const renderGameBoard = `   <div class="game-board-header-container">
+                                        <div class="game-board-timer">00.00</div>
+                                        <button id="restart-game-button">Начать заново</button>
+                                    </div>
+                                    <div id="game-board">${cardsHtml}</div>  `;
+    app.innerHTML = renderGameBoard;
 
-    const cardsArray = [ 'img/cards/туз бубны.svg', 'img/cards/король бубны.svg', 'img/cards/дама бубны.svg', 'img/cards/валет бубны.svg', 'img/cards/10 бубны.svg', 'img/cards/9 бубны.svg', 'img/cards/8 бубны.svg', 'img/cards/7 бубны.svg', 'img/cards/6 бубны.svg', 
-                    'img/cards/туз пики.svg', 'img/cards/король пики.svg', 'img/cards/дама пики.svg', 'img/cards/валет пики.svg', 'img/cards/10 пики.svg', 'img/cards/9 пики.svg', 'img/cards/8 пики.svg', 'img/cards/7 пики.svg', 'img/cards/6 пики.svg',
-                    'img/cards/туз черви.svg', 'img/cards/король черви.svg', 'img/cards/дама черви.svg', 'img/cards/валет черви.svg', 'img/cards/10 черви.svg', 'img/cards/9 черви.svg', 'img/cards/8 черви.svg', 'img/cards/7 черви.svg', 'img/cards/6 черви.svg',
-                    'img/cards/туз крести.svg', 'img/cards/король крести.svg', 'img/cards/дама крести.svg', 'img/cards/валет крести.svg', 'img/cards/10 крести.svg', 'img/cards/9 крести.svg', 'img/cards/8 крести.svg', 'img/cards/7 крести.svg', 'img/cards/6 крести.svg',
-    ];
+    const blankCards = document.querySelectorAll('.blank');
+    blankCards.forEach((blankCard) => {
+      setTimeout(() => blankCard.classList.remove('isFlipped'), 3000);
+    });
 
-    const testButton = document.querySelector('#click-on-me');
-    testButton.addEventListener('click', function() {
-        gameBoard.innerHTML = cardsArray.map((el, index) => {
-            return `<div data-set="${index}" class="opened-card-container">
-                        <img src="${el}">
-                    </div>`
-        }).join('');
-    })
+    const cardContainers = document.querySelectorAll('.card-container');
+    cardContainers.forEach((cardContainer) => {
+      cardContainer.addEventListener('click', () => {
+        cardContainer.children[1].classList.add('isFlipped');
+        flippedCards.push(cardContainer.children[0]);
+        console.log(flippedCards);
+
+        let card1 = flippedCards[0];
+        let card2 = flippedCards[1];
+
+        if (flippedCards.length === 2) {
+          // cardContainer.children[1].classList.add('isFlipped')
+            
+          if (card1.getAttribute('src') === card2.getAttribute('src')) {
+            // card1.classList.add('matched');
+            // card2.classList.add('matched');
+            // cardContainer.children[1].classList.add('isFlipped')
+            console.log('Угадали пару');
+            flippedCards.splice(0, 2);
+            console.log(flippedCards);
+          } else {
+            // card1.classList.remove('matched')
+            // card2.classList.remove('matched')
+            // setTimeout(() => {
+            //     card1.classList.remove('hidden')
+            //     card2.classList.remove('hidden')
+            // }, 500);
+            alert('Проиграл');
+            flippedCards.splice(0, 2);
+          }
+        }
+      });
+    });
+  };
+
+  gameBoardRender();
 }
-
-
-
-

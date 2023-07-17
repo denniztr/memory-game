@@ -132,9 +132,28 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
+    justify-content: center;
 }
 
-.card-element {
+.card-container {
     width: 95px;
     height: 133px;
+    position: relative;
+}
+
+.blank {
+    position: absolute;
+    left: 0;
+}
+
+.matched {
+    display: block;
+}
+
+.isFlipped {
+    display: none;
+}
+
+.hidden {
+    display: none
 }
