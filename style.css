@@ -1,17 +1,17 @@
 @font-face {
-    font-family: StratosSkyengRegular;
-    src: url(/fonts/statosskyeng-v1.001/Desktop\ fonts/stratosskyeng-regular.otf);
+    font-family: STRATOS;
+    src: url('/fonts/statosskyeng-v1.001/Desktop\ fonts/stratosskyeng-regular.otf');
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #004980;  
+    background-color: #004980;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: StratosSkyengRegular;
+    font-family: STRATOS;
 }
 
 #app {
@@ -24,7 +24,7 @@ body {
 .level-selection-box {
     width: 480px;
     height: 460px;
-    background-color: #C2F5FF;
+    background-color: #c2f5ff;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -61,29 +61,29 @@ body {
     width: 98px;
     height: 98px;
     border-radius: 12px;
-    background-color: #FFFFFF;
+    background-color: #fff;
     font-size: 64px;
-    color: #0080C1;
+    color: #0080c1;
     align-items: center;
     justify-content: center;
     border: none;
-    font-family: StratosSkyengRegular;
+    font-family: STRATOS;
     cursor: pointer;
 }
 
 .level-button.selected {
-    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
-  }
+    box-shadow: 0 5px 10px 2px rgb(34 60 80 / 20%) inset;
+}
 
 .start-game-button {
-    background-color: #7AC100;
+    background-color: #7ac100;
     width: 246px;
     height: 50px;
     border: none;
     border-radius: 12px;
-    color: #FFFFFF;
+    color: #fff;
     font-size: 24px;
-    font-family: StratosSkyengRegular;
+    font-family: STRATOS;
     cursor: pointer;
 }
 
@@ -96,7 +96,7 @@ body {
     width: 1000px;
     display: flex;
     justify-content: space-between;
-    margin: 22px 22px 0 22px;
+    margin: 22px 22px 0;
     height: 91px;
 }
 
@@ -107,11 +107,11 @@ body {
 #restart-game-button {
     width: 246px;
     height: 50px;
-    background-color: #7AC100;
+    background-color: #7ac100;
     border: none;
     border-radius: 12px;
     color: white;
-    font-family: StratosSkyengRegular;
+    font-family: STRATOS;
     font-size: 24px;
     align-self: center;
 }
@@ -120,7 +120,7 @@ body {
     width: 155px;
     font-size: 64px;
     color: white;
-    font-family: StratosSkyengRegular;
+    font-family: STRATOS;
 }
 
 #game-board {
@@ -129,8 +129,7 @@ body {
     margin-right: 22px;
     height: 500px;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     gap: 15px;
     justify-content: center;
 }
@@ -155,5 +154,5 @@ body {
 }
 
 .hidden {
-    display: none
+    display: none;
 }

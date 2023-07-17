@@ -1,9 +1,9 @@
-import { createLevelSelection } from "./components/level-selection-component.js";
+import { createLevelSelection } from './components/level-selection-component.js';
 
 export const app = document.querySelector('#app');
 
-function renderGame () {
-    createLevelSelection()
+function renderGame() {
+    createLevelSelection();
 }
 
-renderGame()
+renderGame();

@@ -1,9 +1,8 @@
-import { app } from "../app.js";
-import { gameBoardComponent } from "./game-board-component.js";
-import { getPairs, shuffle } from "../utils.js";
+import { app } from '../app.js';
+import { gameBoardComponent } from './game-board-component.js';
+import { getPairs, shuffle } from '../utils.js';
 
-export function createLevelSelection () {
-
+export function createLevelSelection() {
     const levelSelectionBox = document.createElement('div');
     levelSelectionBox.classList.add('level-selection-box');
 
@@ -25,49 +24,51 @@ export function createLevelSelection () {
                                 </div>  `;
 
     app.append(levelSelectionBox);
-    
-    const levelSelectionWarning= document.createElement('p');
+
+    const levelSelectionWarning = document.createElement('p');
     levelSelectionWarning.classList.add('level-selection-warning');
     levelSelectionBox.append(levelSelectionWarning);
 
-
     const levelButtons = document.querySelectorAll('.level-button');
-    levelButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        levelButtons.forEach(btn => {
-          btn.classList.remove('selected');
+    levelButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+            levelButtons.forEach((btn) => {
+                btn.classList.remove('selected');
+            });
+            this.classList.add('selected');
         });
-        this.classList.add('selected');
-      });
     });
 
-    document.getElementById('level-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const selectedLevel = document.querySelector('.level-button.selected');
-        
+    document
+        .getElementById('level-form')
+        .addEventListener('submit', function (event) {
+            event.preventDefault();
+            const selectedLevel = document.querySelector(
+                '.level-button.selected',
+            );
 
-        if (selectedLevel) {
-            const levelValue = selectedLevel.value;
-            let generatedDeck = [];
+            if (selectedLevel) {
+                const levelValue = selectedLevel.value;
+                let generatedDeck = [];
 
-            if (levelValue == 1) {
-                console.log(`Начало игры с уровнем ${levelValue}`);
-                generatedDeck = shuffle(getPairs(3));
-            } else if (levelValue == 2) {
-                console.log(`Начало игры с уровнем ${levelValue}`);
-                generatedDeck = shuffle(getPairs(6));
-            }  else if (levelValue == 3) {
-                console.log(`Начало игры с уровнем ${levelValue}`);
-                generatedDeck = shuffle(getPairs(9));
+                if (levelValue == 1) {
+                    console.log(`Начало игры с уровнем ${levelValue}`);
+                    generatedDeck = shuffle(getPairs(3));
+                } else if (levelValue == 2) {
+                    console.log(`Начало игры с уровнем ${levelValue}`);
+                    generatedDeck = shuffle(getPairs(6));
+                } else if (levelValue == 3) {
+                    console.log(`Начало игры с уровнем ${levelValue}`);
+                    generatedDeck = shuffle(getPairs(9));
+                }
+
+                gameBoardComponent(generatedDeck);
+            } else {
+                levelSelectionWarning.textContent =
+                    'выберите уровень чтобы начать игру';
+                setTimeout(function () {
+                    levelSelectionWarning.textContent = '';
+                }, 3000);
             }
-
-            gameBoardComponent(generatedDeck);
-
-        } else {
-            levelSelectionWarning.textContent = 'выберите уровень чтобы начать игру';
-            setTimeout(function() {
-                levelSelectionWarning.textContent = '';
-            }, 3000)
-        }
-    })
+        });
 }
