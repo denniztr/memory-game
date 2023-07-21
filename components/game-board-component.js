@@ -7,7 +7,7 @@ export function gameBoardComponent(deck) {
             .map((card, index) => {
                 return `<div id='cardWrap' class="card-container">
             <img data-set="${index}" class="card default" src="${card}">
-            <img data-set="${index}" class="card blank isFlipped" src="img/cards/рубашка.svg">
+            <img data-set="${index}" class="card blank isFlipped" src="static/cards/рубашка.svg">
             </div>`;
             })
             .join('');
