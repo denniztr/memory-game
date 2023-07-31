@@ -2,17 +2,23 @@
 import { gameResultComponent } from './game-result-component';
 import { createLevelSelection } from './level-selection-component';
 
+
+const appendMinutes: Element = document.createElement('span');
+const appendSeconds = document.createElement('span');
+const dot = document.createElement('span');
+dot.textContent = '.';
+appendMinutes.textContent = '00';
+appendSeconds.textContent = '00';
+const timer = document.createElement('div');
+timer.append(appendMinutes, dot, appendSeconds)
+
+let gameTime: NodeJS.Timer;
+let stopWatchedResult: string;
+
 export function gameBoardComponent(deck: string[], app: Element): void {
     let flippedCards: HTMLElement[] = [];
-    let openedCards: number = 0;
-    // let min: number = 0;
-    // let sek: number = 0;
-
-    const appendMinutes = document.createElement('span');
-    const appendSeconds = document.createElement('span');
-    appendMinutes.textContent = '00';
-    appendSeconds.textContent = '00';
-
+    let openedCards: number  = 0;
+ 
     const gameBoardRender = () => {
         const cardsHtml: string = deck
             .map((card: string, index: number) => {
@@ -28,16 +34,15 @@ export function gameBoardComponent(deck: string[], app: Element): void {
                                                     <span class='span-timer min'>min</span>
                                                     <span class='span-timer sek'>sek</span>
                                                     <span class='timer-counter'>
-                                                        <span class='timer-counter-min'></span>
-                                                        <span class='timer-counter-sek'></span>
                                                     </span>
                                                     </div>
                                                 <button id="restart-game-button">Начать заново</button>
                                             </div>
                                             <div id="game-board">${cardsHtml}</div>  `;
         app.innerHTML = renderGameBoard;
-
         
+            const timerCounter = document.querySelector('.timer-counter')
+            timerCounter?.append(timer)
 
         const gameBoard: Element | null = document.querySelector('#game-board');
         const gameBoardHeader: Element | null = document.querySelector(
@@ -65,10 +70,6 @@ export function gameBoardComponent(deck: string[], app: Element): void {
                 const victoryImg = 'static/celebration.svg';
                 const loseImg = 'static/dead.svg';
 
-                // let time = setTimeout(() => {
-                //     startTimer()
-                // }, 5000)
-                // console.log(time)
                 if (flippedCards.length === 2) {
                     if (
                         card1.getAttribute('src') === card2.getAttribute('src')
@@ -78,14 +79,19 @@ export function gameBoardComponent(deck: string[], app: Element): void {
                         flippedCards.splice(0, 2);
 
                         if (openedCards === deck.length) {
-                            gameResultComponent(app, victoryImg, victory);
+                            gameBoard?.classList.add('blur');
+                            gameBoardHeader?.classList.add('blur');
+                            clearInterval(gameTime)
+                            gameResultComponent(app, victoryImg, victory, stopWatchedResult);
                         }
                     } else {
                         // Результат с проигрышем
                         gameBoard?.classList.add('blur');
                         gameBoardHeader?.classList.add('blur');
                         flippedCards.splice(0, 2);
-                        gameResultComponent(app, loseImg, loss);
+                        clearInterval(gameTime)
+                        
+                        gameResultComponent(app, loseImg, loss, stopWatchedResult);
                     }
                 }
             });
@@ -101,31 +107,33 @@ export function gameBoardComponent(deck: string[], app: Element): void {
     };
 
     setTimeout(() => {
-        startTimer()
-    }, 5000);
+        startTimer(timer)
+    }, 5000)
 
     gameBoardRender();
 }
 
 
-function startTimer(): void {
+function startTimer(timer: HTMLDivElement): void {
     let minutes: number = 0;
     let seconds: number = 0;
 
-    setInterval(() => {
+    let interval: NodeJS.Timer = setInterval(() => {
             seconds += 1;
             if (seconds === 60) {
                 minutes += 1;
                 seconds = 0;
             }
-        
-        return `${formatTime(minutes)}.${formatTime(seconds)}`;
-            
+
+    timer.innerText = `${formatTime(minutes)}.${formatTime(seconds)}`;
+    gameTime = interval;
+    stopWatchedResult = `${formatTime(minutes)}.${formatTime(seconds)}`
         }, 1000);
 
         const formatTime = (time: number) => {
             return time < 10 ? '0' + time : time;
         };
+        
     console.log('Timer starts');
 }
 
