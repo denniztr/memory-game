@@ -1,5 +1,5 @@
-export function getPairs(count) {
-    const cards = [
+export function getPairs(count: number) {
+    const cards: string[] = [
         'static/cards/туз бубны.svg',
         'static/cards/король бубны.svg',
         'static/cards/дама бубны.svg',
@@ -37,7 +37,7 @@ export function getPairs(count) {
         'static/cards/7 крести.svg',
         'static/cards/6 крести.svg',
     ];
-    let pairs = [];
+    let pairs: string[] = [];
 
     for (let i = 0; i < count; i++) {
         let cardIndex = Math.floor(Math.random() * cards.length); // Случайный индекс карты
@@ -52,7 +52,7 @@ export function getPairs(count) {
     return pairs;
 }
 
-export const shuffle = (array) => {
+export const shuffle = (array: string[]) => {
     let currentIndex = array.length,
         randomIndex;
 
@@ -65,6 +65,7 @@ export const shuffle = (array) => {
             array[currentIndex],
         ];
     }
-
+    
     return array;
+    
 };

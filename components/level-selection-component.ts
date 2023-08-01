@@ -1,8 +1,8 @@
-import { app } from '../app.js';
-import { gameBoardComponent } from './game-board-component.js';
-import { getPairs, shuffle } from '../utils.js';
+// import { app } from '../app';
+import { gameBoardComponent } from './game-board-component';
+import { getPairs, shuffle } from '../utils';
 
-export function createLevelSelection() {
+export function createLevelSelection(app: Element): void {
     const levelSelectionBox = document.createElement('div');
     levelSelectionBox.classList.add('level-selection-box');
 
@@ -29,28 +29,29 @@ export function createLevelSelection() {
     levelSelectionWarning.classList.add('level-selection-warning');
     levelSelectionBox.append(levelSelectionWarning);
 
-    const levelButtons = document.querySelectorAll('.level-button');
+    const levelButtons = document.querySelectorAll<HTMLButtonElement>('.level-button');
     levelButtons.forEach((button) => {
         button.addEventListener('click', function () {
             levelButtons.forEach((btn) => {
                 btn.classList.remove('selected');
             });
             this.classList.add('selected');
+            
         });
     });
 
-    document
-        .getElementById('level-form')
-        .addEventListener('submit', function (event) {
+    const levelFormElement = document.getElementById('level-form');
+
+        levelFormElement?.addEventListener('submit', function (event: Event) {
             event.preventDefault();
             const selectedLevel = document.querySelector(
                 '.level-button.selected',
-            );
+            ) as HTMLInputElement | null;
 
             if (selectedLevel) {
-                const levelValue = selectedLevel.value;
-                let generatedDeck = [];
-
+                const levelValue = parseInt(selectedLevel.value, 10);
+                let generatedDeck: string[] = [];
+                console.log(typeof levelValue)
                 if (levelValue == 1) {
                     console.log(`Начало игры с уровнем ${levelValue}`);
                     generatedDeck = shuffle(getPairs(3));
@@ -61,8 +62,8 @@ export function createLevelSelection() {
                     console.log(`Начало игры с уровнем ${levelValue}`);
                     generatedDeck = shuffle(getPairs(9));
                 }
-
-                gameBoardComponent(generatedDeck);
+                
+                gameBoardComponent(generatedDeck, app);
             } else {
                 levelSelectionWarning.textContent =
                     'выберите уровень чтобы начать игру';
