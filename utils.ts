@@ -69,3 +69,6 @@ export const shuffle = (array: string[]) => {
     return array;
     
 };
+
+
+module.exports = { getPairs, shuffle };
