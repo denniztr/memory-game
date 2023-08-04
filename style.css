@@ -1,3 +1,5 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+/* stylelint-disable prettier/prettier */
 @font-face {
     font-family: STRATOS;
     src: url('/static/fonts/statosskyeng-v1.001/Web fonts/stratosskyengweb-regular.woff');
@@ -142,7 +144,7 @@ body {
 }
 
 .sek {
-    right: 0px;
+    right: 0;
 }
 
 #game-board {
@@ -172,6 +174,7 @@ body {
     display: block;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .isFlipped {
     display: none;
 }
