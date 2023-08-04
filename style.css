@@ -174,8 +174,8 @@ body {
     display: block;
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
-.isFlipped {
+
+.is-flipped {
     display: none;
 }
 

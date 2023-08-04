@@ -24,7 +24,7 @@ export function gameBoardComponent(deck: string[], app: Element): void {
             .map((card: string, index: number) => {
                 return `<div id='cardWrap' class="card-container">
             <img data-set="${index}" class="card default" src="${card}">
-            <img data-set="${index}" class="card blank isFlipped" src="static/cards/рубашка.svg">
+            <img data-set="${index}" class="card blank is-flipped" src="static/cards/рубашка.svg">
             </div>`;
             })
             .join('');
@@ -51,13 +51,13 @@ export function gameBoardComponent(deck: string[], app: Element): void {
 
         const blankCards = document.querySelectorAll('.blank');
         blankCards.forEach((blankCard) => {
-            setTimeout(() => blankCard.classList.remove('isFlipped'), 5000);
+            setTimeout(() => blankCard.classList.remove('is-flipped'), 5000);
         });
 
         const cardContainers = document.querySelectorAll('.card-container');
         cardContainers.forEach((cardContainer) => {
             cardContainer.addEventListener('click', () => {
-                cardContainer.children[1].classList.add('isFlipped');
+                cardContainer.children[1].classList.add('is-flipped');
                 const firstChild = cardContainer.children[0] as HTMLElement;
                 flippedCards.push(firstChild);
 
